@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python2.7
 
 import socket, time
 
@@ -9,7 +9,7 @@ port = 6000
 
 s.connect((host, port))
 print s.recv(1024)
-print s.recv(1024)
+print s.recv(1024)p
 
 try:
 	while True:
