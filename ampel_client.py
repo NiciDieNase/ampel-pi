@@ -9,7 +9,7 @@ port = 6000
 
 s.connect((host, port))
 print s.recv(1024)
-print s.recv(1024)p
+print s.recv(1024)
 
 try:
 	while True:
