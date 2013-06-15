@@ -10,7 +10,7 @@ controller=Ampel.AmpelController()
 
 def main():
 	try:
-		server = HTTPServer(('localhost', 80), MyHandler)
+		server = HTTPServer(('0.0.0.0', 80), MyHandler)
 		print 'started httpserver...'
 		server.serve_forever()
 	except KeyboardInterrupt:
