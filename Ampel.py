@@ -13,7 +13,7 @@ class AmpelController:
 	def __del__(self):
 		for color in ["red","green"]:
 			if self.threads[color]!=None:
-				self.threads[color].stop()
+				self.threads[color].exit()
 			set_pin(self.pins[color],0)
 			pin_off(self.pins[color])
 
@@ -24,10 +24,11 @@ class AmpelController:
 		self.threads[color].start()
 		return str.format("Blinking {} with {}/{}", color, timeOn, timeOff)
 
-	def stop(self):
-		for color in ["red","green"]:
-			if self.threads[color]!=None:
-				self.threads[color].stop()
+	def stop(self, color):
+		if self.threads[color]!=None:
+			self.threads[color].exit()
+			self.threads[color] = None
+
 
 	class BlinkThread (threading.Thread):
 		"""docstring for myBlinkThread"""

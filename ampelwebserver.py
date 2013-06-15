@@ -15,8 +15,8 @@ def main():
 		server.serve_forever()
 	except KeyboardInterrupt:
 		print '^C received, shutting down server'
-		controller.blink("red",0,0)
-		controller.blink("green",0,0)
+		controller.stop("red")
+		controller.stop("green")
 		server.socket.close()
 
 class MyHandler(BaseHTTPRequestHandler):
