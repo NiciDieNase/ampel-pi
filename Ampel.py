@@ -22,6 +22,7 @@ class AmpelController:
 			self.threads[color].stop()
 		self.threads[color] = self.BlinkThread(self.pins[color],timeOn,timeOff)
 		self.threads[color].start()
+		return str.format("Blinking {} with {}/{}", color, timeOn, timeOff)
 
 	def stop(self):
 		for color in ["red","green"]:
