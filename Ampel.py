@@ -48,14 +48,11 @@ class AmpelController:
 
 
 def set_pin(pin,value):
-	#file('/sys/class/gpio/gpio'+str(pin)+'/value','w').write(str(value))
-	print pin, "set to", value
+	file('/sys/class/gpio/gpio'+str(pin)+'/value','w').write(str(value))
 
 def init_pin(pin):
-	#file('/sys/class/gpio/export','w').write(str(pin))
-	#file('/sys/class/gpio/gpio'+str(pin)+'/direction','w').write('out')
-	pass
+	file('/sys/class/gpio/export','w').write(str(pin))
+	file('/sys/class/gpio/gpio'+str(pin)+'/direction','w').write('out')
 
 def pin_off(pin):
-	#file('/sys/class/gpio/unexport','w').write(str(pin))
-	pass
+	file('/sys/class/gpio/unexport','w').write(str(pin))
