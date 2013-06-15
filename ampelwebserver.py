@@ -34,6 +34,12 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.wfile.write(open("info.html").read())
 
 	def do_PUT(self):
+		self.handleData()
+
+	def do_POST(self):
+		self.handleData()
+
+	def handleData(self)
 		length = int(self.headers['Content-Length'])
 		content = self.rfile.read(length)
 		result = json.loads(content)
