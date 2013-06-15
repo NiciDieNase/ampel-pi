@@ -26,7 +26,7 @@ class AmpelController:
 
 	def stop(self, color):
 		if self.threads[color]!=None:
-			self.threads[color].exit()
+			self.threads[color]._stop.set()
 			self.threads[color] = None
 
 
