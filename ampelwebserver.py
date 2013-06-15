@@ -39,7 +39,7 @@ class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
 		self.handleData()
 
-	def handleData(self)
+	def handleData(self):
 		length = int(self.headers['Content-Length'])
 		content = self.rfile.read(length)
 		result = json.loads(content)
