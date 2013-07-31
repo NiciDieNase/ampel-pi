@@ -21,9 +21,11 @@ def main():
 
 class MyHandler(BaseHTTPRequestHandler):
 
-#	def __init__(self):
-#		super(self)
+	def __init__(self):
+		super(self)
+		self.blacklist=[]
 #		self.controller=Ampel.AmpelController()
+		
 
 	def do_GET(self):
 		print "GET"
@@ -49,45 +51,40 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.handleData()
 
 	def do_POST(self):
-		blacklist = []
-		if not self.client_address[0] in blacklist:
-			self.handleData()
-		else:
-			print "Blocked request from ", self.client_address[0]
-			self.send_response(402)
+		self.handleData()
 
 
 	def handleData(self):
-		print self.path
-		if self.path == "/":
-			length = int(self.headers['Content-Length'])
-			content = self.rfile.read(length)
-			result = json.loads(content)
-			print json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
-			if("red" in result.keys() or "green" in result.keys()):
-				self.send_response(200)
-				self.handleJSON(result)
+		if not self.client_address[0] in self.blacklist:
+#			print self.path
+			if self.path == "/":
+				length = int(self.headers['Content-Length'])
+				content = self.rfile.read(length)
+				result = json.loads(content)
+				print json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
+				if("red" in result.keys() or "green" in result.keys()):
+					self.send_response(200)
+					self.handleJSON(result)
+				else:
+					self.send_response(400)
 			else:
-				self.send_response(400)
+				if self.path=="/0":
+					controller.set_color("red",0)
+					controller.set_color("green",0)
+				elif self.path=="/1":
+					controller.set_color("red",0)
+					controller.set_color("green",1)
+				elif self.path=="/2":
+					controller.set_color("red",1)
+					controller.set_color("green",0)
+				elif self.path=="/3":
+					controller.set_color("red",1)
+					controller.set_color("green",1)
+				else:
+					self.send_response(400)
 		else:
-			if self.path=="/0":
-				controller.blink("green",0,0)
-				controller.blink("red",0,0)
-				self.send_response(200)
-			elif self.path=="/1":
-				controller.blink("red",0,0)
-				controller.blink("green",1,0)
-				self.send_response(200)
-			elif self.path=="/2":
-				controller.blink("green",0,0)
-				controller.blink("red",1,0)
-				self.send_response(200)
-			elif self.path=="/3":
-				controller.blink("red",1,0)
-				controller.blink("green",1,0)
-				self.send_response(200)
-			else:
-				self.send_response(400)
+			print "Blocked request from ", self.client_address[0]
+			self.send_response(402)
 
 	def handleJSON(self,json):
 		#print json
