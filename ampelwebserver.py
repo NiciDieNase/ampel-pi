@@ -84,7 +84,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.send_response(400)
 
 	def handleJSON(self,json):
-		print json
+		#print json
 		if ("red" in json.keys() and "green" in json.keys()):
 			print controller.blink("red",float(json["red"][0]),float(json["red"][1]))
 			if "delay" in json.keys():
