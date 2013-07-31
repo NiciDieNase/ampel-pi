@@ -21,9 +21,9 @@ def main():
 
 class MyHandler(BaseHTTPRequestHandler):
 
-	def __init__(self):
-		super(self)
-		self.blacklist=[]
+#	def __init__(self):
+#		super(self)
+#		self.blacklist=[]
 #		self.controller=Ampel.AmpelController()
 		
 
@@ -55,7 +55,8 @@ class MyHandler(BaseHTTPRequestHandler):
 
 
 	def handleData(self):
-		if not self.client_address[0] in self.blacklist:
+		blacklist=[]
+		if not self.client_address[0] in blacklist:
 #			print self.path
 			if self.path == "/":
 				length = int(self.headers['Content-Length'])
