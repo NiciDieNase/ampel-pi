@@ -25,8 +25,13 @@ class AmpelController:
 	def blink(self,color,timeOn,timeOff):
 		if self.threads[color]!=None:
 			self.threads[color].stop()
-		self.threads[color] = self.BlinkThread(self.pins[color],timeOn,timeOff)
-		self.threads[color].start()
+		if(timeOn==0):
+			set_pin(self.pins[color],0)
+		elif(timeOff==0)
+			set_pin(self.pins[color],1)
+		else:
+			self.threads[color] = self.BlinkThread(self.pins[color],timeOn,timeOff)
+			self.threads[color].start()
 		return str.format("Blinking {} with {}/{}", color, timeOn, timeOff)
 
 	def stop(self, color):
