@@ -63,7 +63,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				content = self.rfile.read(length)
 				result = json.loads(content)
 				#print json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
-				json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
+				print result
 				if("red" in result.keys() or "green" in result.keys()):
 					self.send_response(200)
 					self.handleJSON(result)
