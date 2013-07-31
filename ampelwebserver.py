@@ -49,11 +49,11 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.handleData()
 
 	def do_POST(self):
-		blacklist = ['151.218.76.75']
+		blacklist = []
 		if not self.client_address[0] in blacklist:
 			self.handleData()
-			print "Blocked request from ", self.client_address[0]
 		else:
+			print "Blocked request from ", self.client_address[0]
 			self.send_response(402)
 
 
