@@ -49,7 +49,12 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.handleData()
 
 	def do_POST(self):
-		self.handleData()
+		blacklist = ['151.218.76.75']
+		if not blacklist.contains(self.client_address['host']):
+			self.handleData()
+		else:
+			self.send_response(402)
+
 
 	def handleData(self):
 		print self.path
