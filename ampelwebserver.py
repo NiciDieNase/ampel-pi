@@ -29,17 +29,17 @@ class MyHandler(BaseHTTPRequestHandler):
 		print "GET"
 		print self.path
 		if self.path=="/0":
-			controller.blink("green",0,0)
-			controller.blink("red",0,0)
+			controller.set_color("red",0)
+			controller.set_color("green",0)
 		elif self.path=="/1":
-			controller.blink("red",0,0)
-			controller.blink("green",1,0)
+			controller.set_color("red",0)
+			controller.set_color("green",1)
 		elif self.path=="/2":
-			controller.blink("green",0,0)
-			controller.blink("red",1,0)
+			controller.set_color("red",1)
+			controller.set_color("green",0)
 		elif self.path=="/3":
-			controller.blink("red",1,0)
-			controller.blink("green",1,0)
+			controller.set_color("red",1)
+			controller.set_color("green",1)
 		self.send_response(200)
 		self.send_header('Content-type', 'html')
 		self.end_headers()
