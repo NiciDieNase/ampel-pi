@@ -52,7 +52,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		blacklist = ['151.218.76.75']
 		if not blacklist.contains(self.client_address['host']):
 			self.handleData()
-			print "Blocked request from " self.client_address['host']
+			print "Blocked request from ", self.client_address['host']
 		else:
 			self.send_response(402)
 
