@@ -28,8 +28,8 @@ class MyHandler(BaseHTTPRequestHandler):
 		
 
 	def do_GET(self):
-		print "GET"
-		print self.path
+#		print "GET"
+#		print self.path
 		if self.path=="/0":
 			controller.set_color("red",0)
 			controller.set_color("green",0)
