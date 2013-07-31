@@ -27,7 +27,7 @@ class AmpelController:
 			self.threads[color].stop()
 		if(timeOn==0):
 			set_pin(self.pins[color],0)
-		elif(timeOff==0)
+		elif(timeOff==0):
 			set_pin(self.pins[color],1)
 		else:
 			self.threads[color] = self.BlinkThread(self.pins[color],timeOn,timeOff)
