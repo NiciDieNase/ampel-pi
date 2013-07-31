@@ -92,16 +92,16 @@ class MyHandler(BaseHTTPRequestHandler):
 	def handleJSON(self,json):
 		#print json
 		if ("red" in json.keys() and "green" in json.keys()):
-			print controller.blink("red",float(json["red"][0]),float(json["red"][1]))
+			controller.blink("red",float(json["red"][0]),float(json["red"][1]))
 			if "delay" in json.keys():
 				time.sleep(float(json["delay"]))
-			print controller.blink("green",float(json["green"][0]),float(json["green"][1]))
+			controller.blink("green",float(json["green"][0]),float(json["green"][1]))
 
 		elif "red" in json.keys():
-			print controller.blink("red",float(json["red"][0]),float(json["red"][1]))
+			controller.blink("red",float(json["red"][0]),float(json["red"][1]))
 
 		elif "green" in json.keys():
-			print controller.blink("green",float(json["green"][0]),float(json["green"][1]))
+			controller.blink("green",float(json["green"][0]),float(json["green"][1]))
 
 if __name__ == '__main__':
 	main()
