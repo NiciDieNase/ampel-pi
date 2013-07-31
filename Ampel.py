@@ -19,7 +19,7 @@ class AmpelController:
 
 	def set_color(self,color,status):
 		if not self.threads[color]:
-			thread.stop()
+			threads[color].stop()
 		set_pin(self.pins[color],status)
 
 	def blink(self,color,timeOn,timeOff):
