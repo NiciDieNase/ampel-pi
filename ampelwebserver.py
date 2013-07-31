@@ -28,6 +28,18 @@ class MyHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		print "GET"
 		print self.path
+		if self.path=="/0":
+			controller.blink("green",0,0)
+			controller.blink("red",0,0)
+		elif self.path=="/1":
+			controller.blink("red",0,0)
+			controller.blink("green",1,0)
+		elif self.path=="/2":
+			controller.blink("green",0,0)
+			controller.blink("red",1,0)
+		elif self.path=="/3":
+			controller.blink("red",1,0)
+			controller.blink("green",1,0)
 		self.send_response(200)
 		self.send_header('Content-type', 'html')
 		self.end_headers()
@@ -40,17 +52,39 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.handleData()
 
 	def handleData(self):
-		length = int(self.headers['Content-Length'])
-		content = self.rfile.read(length)
-		result = json.loads(content)
-		print json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
-		if("red" in result.keys() or "green" in result.keys()):
-			self.send_response(200)
-			self.handleJSON(result)
+		print self.path
+		if self.path == "/":
+			length = int(self.headers['Content-Length'])
+			content = self.rfile.read(length)
+			result = json.loads(content)
+			print json.dumps(result, sort_keys=True, indent=4, separators=(',', ': '))
+			if("red" in result.keys() or "green" in result.keys()):
+				self.send_response(200)
+				self.handleJSON(result)
+			else:
+				self.send_response(400)
 		else:
-			self.send_response(400)
+			if self.path=="/0":
+				controller.blink("green",0,0)
+				controller.blink("red",0,0)
+				self.send_response(200)
+			elif self.path=="/1":
+				controller.blink("red",0,0)
+				controller.blink("green",1,0)
+				self.send_response(200)
+			elif self.path=="/2":
+				controller.blink("green",0,0)
+				controller.blink("red",1,0)
+				self.send_response(200)
+			elif self.path=="/3":
+				controller.blink("red",1,0)
+				controller.blink("green",1,0)
+				self.send_response(200)
+			else:
+				self.send_response(400)
 
 	def handleJSON(self,json):
+		print json
 		if ("red" in json.keys() and "green" in json.keys()):
 			print controller.blink("red",float(json["red"][0]),float(json["red"][1]))
 			if "delay" in json.keys():
