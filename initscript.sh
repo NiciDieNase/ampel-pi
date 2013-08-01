@@ -1,4 +1,13 @@
-! /bin/sh
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          ampelserver
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Ampel Webserver
+# Description:       
+### END INIT INFO
 # /etc/init.d/ampel
 #
 
