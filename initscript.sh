@@ -8,7 +8,7 @@ touch /var/lock/ampel
 # Carry out specific functions when asked to by the system
 case "$1" in
 	start)
-		/home/pi/ampel/ampelwebserver.py >> /var/log/ampel.log 2>> /var/log/ampel.log &
+		screen /home/pi/ampel/ampelwebserver.py >> /var/log/ampel.log 2>> /var/log/ampel.log
 		;;
 	stop)
 		echo "Stopping script blah"
