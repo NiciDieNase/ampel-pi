@@ -1,0 +1,8 @@
+[Unit]
+Description=Ampel Server
+
+[Service]
+ExecStart=/root/ampel/ampelwebserver.py
+
+[Install]
+WantedBy=multi-user.target
