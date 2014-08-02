@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+import os
 import json
 import threading
 import time
@@ -10,6 +11,9 @@ controller=Ampel.AmpelController()
 
 def main():
 	try:
+		controller.set_color("red",1)
+		controller.set_color("green",1)
+
 		server = HTTPServer(('0.0.0.0', 80), MyHandler)
 		print 'started httpserver...'
 		server.serve_forever()
@@ -45,7 +49,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.send_response(200)
 		self.send_header('Content-type', 'html')
 		self.end_headers()
-		self.wfile.write(open("info.html").read())
+		self.wfile.write(open(os.path.join(os.path.dirname(__file__), 'info.html')).read())
 
 	def do_PUT(self):
 		self.handleData()
