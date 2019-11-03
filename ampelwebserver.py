@@ -13,10 +13,10 @@ def main():
 	try:
 		controller.set_color("red",1)
 		controller.set_color("green",1)
-                
-                controller.blink("red",1.0,1.0)
-                time.sleep(1.0)
-                controller.blink("green",1.0,1.0)
+
+		controller.blink("red",1.0,1.0)
+		time.sleep(1.0)
+		controller.blink("green",1.0,1.0)
 
 		server = HTTPServer(('0.0.0.0', 80), MyHandler)
 		print 'started httpserver...'
